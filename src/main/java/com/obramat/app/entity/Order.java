@@ -15,6 +15,7 @@ import jakarta.persistence.TemporalType;
 import lombok.Data;
 
 import java.io.Serializable;
+import java.time.LocalDateTime;
 import java.util.Date;
 import java.util.List;
 
@@ -28,11 +29,10 @@ public class Order implements Serializable {
     private int id;
 
     @Column(name = "creation_date")
-    @Temporal(TemporalType.TIMESTAMP)
-    private Date creationDate;
+    private LocalDateTime creationDate;
 
-    @Column(name = "total_product")
-    private int totalProduct;
+    @Column(name = "total_products")
+    private int totalProducts;
 
     @Column(name = "total_price_without_iva")
     private double totalPriceWithoutIVA;

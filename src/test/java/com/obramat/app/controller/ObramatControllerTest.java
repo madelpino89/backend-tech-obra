@@ -3,7 +3,7 @@ package com.obramat.app.controller;
 import com.obramat.app.entity.Order;
 import com.obramat.app.entity.Product;
 import com.obramat.app.entity.Status;
-import com.obramat.app.service.OrdersService;
+import com.obramat.app.service.OrderService;
 import com.obramat.app.service.ProductService;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
@@ -24,7 +24,7 @@ import static org.mockito.Mockito.when;
 class ObramatControllerTest {
 
     @Mock
-    private OrdersService ordersService;
+    private OrderService orderService;
 
     @Mock
     private ProductService productService;
@@ -40,7 +40,7 @@ class ObramatControllerTest {
         double price = 100.0;
         List<Order> orders = new ArrayList<>();
 
-        when(ordersService.getOrders(creationDate, status, price)).thenReturn(orders);
+        when(orderService.getOrders(creationDate, status, price)).thenReturn(orders);
 
         // Act
         ResponseEntity<List<Order>> responseEntity = obramatController.ordersList(creationDate, status, price);
@@ -54,7 +54,7 @@ class ObramatControllerTest {
     public void testCreateOrder() {
         // Arrange
         Order order = new Order();
-        when(ordersService.createOrder(order)).thenReturn(order);
+        when(orderService.createOrder(order)).thenReturn(order);
 
         // Act
         ResponseEntity<Order> responseEntity = obramatController.createOrder(order);
@@ -69,7 +69,7 @@ class ObramatControllerTest {
         // Arrange
         int orderId = 1;
         Order order = new Order();
-        when(ordersService.getDetailsOrder(orderId)).thenReturn(order);
+        when(orderService.getDetailsOrder(orderId)).thenReturn(order);
 
         // Act
         ResponseEntity<Order> responseEntity = obramatController.getOrderDetails(orderId);
@@ -83,7 +83,7 @@ class ObramatControllerTest {
     public void testUpdateOrder() {
         // Arrange
         Order order = new Order();
-        when(ordersService.updateOrder(order)).thenReturn(order);
+        when(orderService.updateOrder(order)).thenReturn(order);
 
         // Act
         ResponseEntity<Order> responseEntity = obramatController.updateOrder(order);
@@ -99,7 +99,7 @@ class ObramatControllerTest {
         int orderId = 1;
         Order order = new Order();
         Optional<Order> existingOrder = Optional.of(order);
-        when(ordersService.deleteOrder(orderId)).thenReturn(existingOrder.get());
+        when(orderService.deleteOrder(orderId)).thenReturn(existingOrder.get());
 
         // Act
         ResponseEntity<Order> responseEntity = obramatController.deleteOrder(orderId);
@@ -128,7 +128,7 @@ class ObramatControllerTest {
     public void testGetAllOrders() {
         // Arrange
         List<Order> orders = new ArrayList<>();
-        when(ordersService.getAll()).thenReturn(orders);
+        when(orderService.getAll()).thenReturn(orders);
 
         // Act
         List<Order> result = obramatController.getAllOrders();
