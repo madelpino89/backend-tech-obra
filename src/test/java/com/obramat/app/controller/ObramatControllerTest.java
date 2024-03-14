@@ -1,6 +1,6 @@
 package com.obramat.app.controller;
 
-import com.obramat.app.entity.Orders;
+import com.obramat.app.entity.Order;
 import com.obramat.app.entity.Product;
 import com.obramat.app.entity.Status;
 import com.obramat.app.service.OrdersService;
@@ -38,12 +38,12 @@ class ObramatControllerTest {
         Date creationDate = new Date();
         Status status = Status.PENDING;
         double price = 100.0;
-        List<Orders> orders = new ArrayList<>();
+        List<Order> orders = new ArrayList<>();
 
         when(ordersService.getOrders(creationDate, status, price)).thenReturn(orders);
 
         // Act
-        ResponseEntity<List<Orders>> responseEntity = obramatController.ordersList(creationDate, status, price);
+        ResponseEntity<List<Order>> responseEntity = obramatController.ordersList(creationDate, status, price);
 
         // Assert
         assertEquals(HttpStatus.OK, responseEntity.getStatusCode());
@@ -53,11 +53,11 @@ class ObramatControllerTest {
     @Test
     public void testCreateOrder() {
         // Arrange
-        Orders order = new Orders();
+        Order order = new Order();
         when(ordersService.createOrder(order)).thenReturn(order);
 
         // Act
-        ResponseEntity<Orders> responseEntity = obramatController.createOrder(order);
+        ResponseEntity<Order> responseEntity = obramatController.createOrder(order);
 
         // Assert
         assertEquals(HttpStatus.OK, responseEntity.getStatusCode());
@@ -68,11 +68,11 @@ class ObramatControllerTest {
     public void testGetOrderDetails() {
         // Arrange
         int orderId = 1;
-        Orders order = new Orders();
+        Order order = new Order();
         when(ordersService.getDetailsOrder(orderId)).thenReturn(order);
 
         // Act
-        ResponseEntity<Orders> responseEntity = obramatController.getOrderDetails(orderId);
+        ResponseEntity<Order> responseEntity = obramatController.getOrderDetails(orderId);
 
         // Assert
         assertEquals(HttpStatus.OK, responseEntity.getStatusCode());
@@ -82,11 +82,11 @@ class ObramatControllerTest {
     @Test
     public void testUpdateOrder() {
         // Arrange
-        Orders order = new Orders();
+        Order order = new Order();
         when(ordersService.updateOrder(order)).thenReturn(order);
 
         // Act
-        ResponseEntity<Orders> responseEntity = obramatController.updateOrder(order);
+        ResponseEntity<Order> responseEntity = obramatController.updateOrder(order);
 
         // Assert
         assertEquals(HttpStatus.OK, responseEntity.getStatusCode());
@@ -97,12 +97,12 @@ class ObramatControllerTest {
     public void testDeleteOrder() {
         // Arrange
         int orderId = 1;
-        Orders order = new Orders();
-        Optional<Orders> existingOrder = Optional.of(order);
+        Order order = new Order();
+        Optional<Order> existingOrder = Optional.of(order);
         when(ordersService.deleteOrder(orderId)).thenReturn(existingOrder.get());
 
         // Act
-        ResponseEntity<Orders> responseEntity = obramatController.deleteOrder(orderId);
+        ResponseEntity<Order> responseEntity = obramatController.deleteOrder(orderId);
 
         // Assert
         assertEquals(HttpStatus.OK, responseEntity.getStatusCode());
@@ -127,11 +127,11 @@ class ObramatControllerTest {
     @Test
     public void testGetAllOrders() {
         // Arrange
-        List<Orders> orders = new ArrayList<>();
+        List<Order> orders = new ArrayList<>();
         when(ordersService.getAll()).thenReturn(orders);
 
         // Act
-        List<Orders> result = obramatController.getAllOrders();
+        List<Order> result = obramatController.getAllOrders();
 
         // Assert
         assertEquals(orders, result);

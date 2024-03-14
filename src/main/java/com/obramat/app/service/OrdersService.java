@@ -1,23 +1,22 @@
 package com.obramat.app.service;
 
+import com.obramat.app.entity.Order;
+import com.obramat.app.entity.Status;
+
 import java.util.Date;
 import java.util.List;
 
-import com.obramat.app.entity.Orders;
-import com.obramat.app.entity.Product;
-import com.obramat.app.entity.Status;
-
 public interface OrdersService {
 
-    List<Orders> getOrders(Date creationDate, Status status, double price);
+    List<Order> getOrders(Date creationDate, Status status, double price);
 
-    Orders createOrder(Orders order);
+    Order createOrder(Order order);
 
-    Orders getDetailsOrder(int id);
+    Order getDetailsOrder(int id);
 
-    Orders updateOrder(Orders order);
+    Order updateOrder(Order order);
 
-    Orders deleteOrder(int id);
+    Order deleteOrder(int id);
 
-    List<Orders> getAll();
+    List<Order> getAll();
 }

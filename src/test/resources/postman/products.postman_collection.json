@@ -1,0 +1,58 @@
+{
+	"info": {
+		"_postman_id": "81db3222-9697-419c-9724-ea96ed649e1a",
+		"name": "products",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "11182689",
+		"_collection_link": "https://solar-shadow-353481.postman.co/workspace/Cards~50feb365-d8a6-4577-bd27-474b14b88f29/collection/11182689-81db3222-9697-419c-9724-ea96ed649e1a?action=share&source=collection_link&creator=11182689"
+	},
+	"item": [
+		{
+			"name": "orders",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:3000/obramat/orders",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"obramat",
+						"orders"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "order",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"id\": 1,\n    \"products\": [\n        {\n            \"id\": 1,\n            \"name\": \"foo\"\n        }\n    ]\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:3000/obramat/orders",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"obramat",
+						"orders"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

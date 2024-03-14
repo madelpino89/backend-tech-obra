@@ -1,6 +1,6 @@
 package com.obramat.app.service;
 
-import com.obramat.app.entity.Orders;
+import com.obramat.app.entity.Order;
 import com.obramat.app.entity.Product;
 import com.obramat.app.entity.Status;
 import com.obramat.app.repository.OrdersRepository;
@@ -22,8 +22,8 @@ public class OrdersServiceImpl implements OrdersService {
     private ProductRepository productRepository;
 
     @Override
-    public List<Orders> getOrders(Date creationDate, Status status, double price) {
-        List<Orders> allOrders = ordersRepository.findAll();
+    public List<Order> getOrders(Date creationDate, Status status, double price) {
+        List<Order> allOrders = ordersRepository.findAll();
 
         if (creationDate != null) {
             allOrders = allOrders.stream()
@@ -45,10 +45,10 @@ public class OrdersServiceImpl implements OrdersService {
     }
 
     @Override
-    public Orders createOrder(Orders order) {
-        Orders newOrder = ordersRepository.save(order);
+    public Order createOrder(Order order) {
+        Order newOrder = ordersRepository.save(order);
         List<Product> products = order.getProducts().stream()
-                .peek(product -> product.setOrders(newOrder))
+                .peek(product -> product.setOrder(newOrder))
                 .toList();
 
         productRepository.saveAll(products);
@@ -57,23 +57,23 @@ public class OrdersServiceImpl implements OrdersService {
     }
 
     @Override
-    public Orders getDetailsOrder(int id) {
+    public Order getDetailsOrder(int id) {
         return ordersRepository.findById(id).orElse(null);
     }
 
     @Override
-    public Orders updateOrder(Orders order) {
-        Optional<Orders> existingOrder = ordersRepository.findById(order.getId());
+    public Order updateOrder(Order order) {
+        Optional<Order> existingOrder = ordersRepository.findById(order.getId());
         if (existingOrder.isPresent()) {
-            Orders updated = ordersRepository.save(order);
+            Order updated = ordersRepository.save(order);
             return updated;
         }
         return null;
     }
 
     @Override
-    public Orders deleteOrder(int id) {
-        Optional<Orders> existingOrder = ordersRepository.findById(id);
+    public Order deleteOrder(int id) {
+        Optional<Order> existingOrder = ordersRepository.findById(id);
         if (existingOrder.isPresent()) {
             ordersRepository.deleteById(id);
             return existingOrder.get();
@@ -82,7 +82,7 @@ public class OrdersServiceImpl implements OrdersService {
     }
 
     @Override
-    public List<Orders> getAll() {
+    public List<Order> getAll() {
         return ordersRepository.findAll();
     }
 }

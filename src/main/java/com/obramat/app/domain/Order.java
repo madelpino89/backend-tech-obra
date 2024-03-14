@@ -1,15 +1,13 @@
 package com.obramat.app.domain;
 
-import jakarta.persistence.*;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
 import lombok.Data;
 
 import java.util.Date;
 
-@Entity
 @Data
 public class Order {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
     private Date date;

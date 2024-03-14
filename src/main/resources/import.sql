@@ -8,7 +8,7 @@ CREATE TABLE Products (
     PRIMARY KEY(id_product)
 );
 
-INSERT INTO Products (name, description, price, order_id) VALUES
+INSERT INTO Products (id, name, description, price, order_id) VALUES
 (1,'Cement','Bag of Portland cement for construction.',25.00,1),
 (2,'Bricks','Package of ceramic bricks for building.',1.20,1),
 (3,'Wood for construction','Treated wood planks for use in construction projects.',15.00, 1);
@@ -23,7 +23,7 @@ CREATE TABLE Orders (
     PRIMARY KEY(id_orders)
 );
 
-INSERT INTO Orders (creation_date, total_product, total_price_without_iva, total_price_with_iva, status) VALUES
+INSERT INTO Orders (id,creation_date, total_product, total_price_without_iva, total_price_with_iva, status) VALUES
 (1,'2024-02-19 12:30:00',2,67.40,77.51,'PENDING'),
 (2,'2024-02-19 14:45:00',1,1.20,1.38,'CANCELLED'),
 (3,'2024-02-19 16:00:00',3,44.10,50.76,'COLLECTED');
